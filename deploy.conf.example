@@ -1,0 +1,22 @@
+# deploy.conf — copy to deploy.conf and fill in. Plain KEY=value lines only.
+# deploy.conf is gitignored because it holds your API key.
+
+# --- EC2 instance (required) -------------------------------------------------
+EC2_HOST=ec2-12-34-56-78.us-west-2.compute.amazonaws.com
+SSH_KEY_PATH=~/.ssh/my-ec2-key.pem
+# EC2_USER=ec2-user            # ubuntu for Ubuntu AMIs
+# SSH_PORT=22
+# SSH_EXTRA_OPTS="-o ProxyJump=bastion.example.com"   # e.g. go through a bastion
+
+# --- LLM backend (OpenAI-compatible) -----------------------------------------
+LLM_API_KEY=sk-...
+# LLM_API_BASE_URL=https://api.openai.com/v1   # OpenRouter: https://openrouter.ai/api/v1 ; or your proxy / LiteLLM / vLLM
+
+# --- Open WebUI --------------------------------------------------------------
+# LOCAL_PORT=3000              # http://127.0.0.1:LOCAL_PORT on your machine
+# REMOTE_PORT=8080             # loopback port on the instance (never exposed publicly)
+# OPEN_WEBUI_IMAGE=ghcr.io/open-webui/open-webui:main   # needs ~6 GB free; use :main-slim (~2 GB) on small root volumes
+# WEBUI_NAME="Team Chat"       # title shown in the UI
+# DEFAULT_MODELS=gpt-4o        # comma-separated, pre-selected for new chats (OpenRouter: e.g. anthropic/claude-sonnet-4.5)
+# RAG_EMBEDDING_MODEL=text-embedding-3-small   # OpenRouter needs the vendor prefix: openai/text-embedding-3-small
+# HEALTH_TIMEOUT=300           # seconds to wait for first start
