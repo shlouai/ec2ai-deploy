@@ -290,6 +290,10 @@ open_browser() {
     open "$URL"
   elif command -v xdg-open >/dev/null 2>&1; then
     xdg-open "$URL" >/dev/null 2>&1 &
+  elif command -v start >/dev/null 2>&1; then          # Windows (Git Bash)
+    start "$URL" >/dev/null 2>&1 &
+  elif command -v cmd.exe >/dev/null 2>&1; then        # Windows (WSL / minimal)
+    cmd.exe /c start "" "$URL" >/dev/null 2>&1 &
   else
     log "open ${URL} in your browser"
   fi

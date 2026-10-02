@@ -13,8 +13,7 @@ cp deploy.conf.example deploy.conf   # 填写 EC2_HOST、SSH_KEY_PATH、LLM_API_
 ## 零基础用户手册
 
 面向完全不懂技术的用户，从申请 OpenRouter Key、创建 EC2 实例到一键部署和日常使用，
-全程手把手：[docs/manual/user-manual.zh-CN.pdf](docs/manual/user-manual.zh-CN.pdf)。
-重新生成 PDF：`cd docs/manual && npm install && npm run build`（需要本机安装 Google Chrome）。
+全程手把手。该手册单独分发，不随本仓库提供。
 
 ## 工作流程
 
@@ -69,7 +68,7 @@ cp deploy.conf.example deploy.conf   # 填写 EC2_HOST、SSH_KEY_PATH、LLM_API_
 
 ## 环境要求
 
-- 本机：bash、ssh、curl。macOS 或 Linux。
+- 本机：bash、ssh、curl。macOS、Linux 或 Windows（Git Bash）。
 - 实例：SSH 密钥登录，免密 sudo，可访问外网拉取镜像。除 SSH 外不需要开放任何入站端口。
 - 磁盘：默认 `:main` 镜像约需 6 GB 可用空间。8 GB 根卷请设置
   `OPEN_WEBUI_IMAGE=ghcr.io/open-webui/open-webui:main-slim`（约 2 GB）。slim 镜像不含
@@ -79,6 +78,14 @@ cp deploy.conf.example deploy.conf   # 填写 EC2_HOST、SSH_KEY_PATH、LLM_API_
   非 OpenAI 时请设置 `LLM_API_BASE_URL`，例如 OpenRouter 为 `https://openrouter.ai/api/v1`。
   OpenRouter 还需要设置 `RAG_EMBEDDING_MODEL=openai/text-embedding-3-small`（带厂商前缀），
   否则文档 RAG 会报模型不存在。
+
+## Windows 用户
+
+Windows 10/11 通过 [Git Bash](https://gitforwindows.org/)（安装 Git for Windows 后自带）即可使用。
+请在 **Git Bash**（不是 PowerShell 或 CMD）里运行脚本。与 macOS/Linux 不同，Windows 不检查
+Unix 文件权限，因此无需对密钥执行 `chmod 400`、也无需给脚本 `chmod +x`。部署完成后会自动
+通过 Windows 的 `start` 命令打开默认浏览器。手册 PDF 在 Windows 上也能重新生成：
+`build.mjs` 会自动探测 Chrome 或 Edge。
 
 ## 配置文件是唯一来源
 

@@ -13,10 +13,9 @@ cp deploy.conf.example deploy.conf   # fill in EC2_HOST, SSH_KEY_PATH, LLM_API_K
 
 ## User manual (Chinese)
 
-A step-by-step guide for non-technical users in mainland China, covering OpenRouter
-sign-up, EC2 setup, deployment and day-to-day use:
-[docs/manual/user-manual.zh-CN.pdf](docs/manual/user-manual.zh-CN.pdf).
-Rebuild with `cd docs/manual && npm install && npm run build` (needs Google Chrome).
+A step-by-step guide for non-technical users in mainland China (covering OpenRouter
+sign-up, EC2 setup, deployment and day-to-day use) is distributed separately from
+this repository.
 
 ## What it does
 
@@ -46,7 +45,7 @@ connecting (API key masked), `--no-browser`.
 
 ## Requirements
 
-- Local: bash, ssh, curl. macOS or Linux.
+- Local: bash, ssh, curl. macOS, Linux, or Windows (Git Bash).
 - Instance: SSH key auth, passwordless sudo, outbound internet to pull the image.
   No inbound ports beyond SSH are needed.
 - Disk: the default `:main` image needs about 6 GB free. On an 8 GB root volume set
@@ -59,6 +58,15 @@ connecting (API key masked), `--no-browser`.
   `https://openrouter.ai/api/v1` for OpenRouter. OpenRouter also needs
   `RAG_EMBEDDING_MODEL=openai/text-embedding-3-small` (vendor-prefixed name) for
   document RAG to work.
+
+## Windows
+
+Windows 10/11 is supported through [Git Bash](https://gitforwindows.org/) (the
+shell that ships with Git for Windows). Open a Git Bash window — not PowerShell
+or CMD — and run the script there. Windows ignores Unix file permissions, so
+there is no `chmod` step for the SSH key or the script. The browser opens
+automatically via the Windows `start` command. The manual PDF also builds on
+Windows: `build.mjs` auto-detects Chrome or Edge.
 
 ## Config is the source of truth
 

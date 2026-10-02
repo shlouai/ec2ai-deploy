@@ -1,3 +1,4 @@
 deploy.conf
+*.pem
 .omc/
 docs/
